@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Em yêu về Việt Nam</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #232526, #414345);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #ffcccb;
+    }
+    .countdown {
+      font-size: 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+    .time {
+      display: inline-block;
+      margin: 0 0.5rem;
+      min-width: 70px;
+    }
+    .time span {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    .label {
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Em yêu về Việt Nam 💖</h1>
+  <div class="countdown" id="countdown">
+    <div class="time">
+      <span id="days">00</span>
+      <div class="label">Ngày</div>
+    </div>
+    <div class="time">
+      <span id="hours">00</span>
+      <div class="label">Giờ</div>
+    </div>
+    <div class="time">
+      <span id="minutes">00</span>
+      <div class="label">Phút</div>
+    </div>
+    <div class="time">
+      <span id="seconds">00</span>
+      <div class="label">Giây</div>
+    </div>
+  </div>
+
+  <script>
+    // Ngày đếm ngược: 1/2/2026 (1 tháng 2, 2026)
+    const countdownDate = new Date("Feb 1, 2026 00:00:00").getTime();
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = String(days).padStart(2, '0');
+      document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+      document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "<h2>💞 Em đã về rồi! 💞</h2>";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
